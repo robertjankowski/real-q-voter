@@ -45,6 +45,44 @@
 </dl>
 </dd></dl>
 
+<dl class="function">
+<dt id="real_q_voter.simulation.ba_graph_with_opinion">
+<code class="sig-prename descclassname">real_q_voter.simulation.</code><code class="sig-name descname">ba_graph_with_opinion</code><span class="sig-paren">(</span><em class="sig-param">n</em>, <em class="sig-param">m=5</em><span class="sig-paren">)</span> &#x2192; networkx.classes.graph.Graph<a class="headerlink" href="#real_q_voter.simulation.ba_graph_with_opinion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Construct BA network with randomly generated opinions</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n</strong> – Number of nodes</p></li>
+<li><p><strong>m</strong> – Number of edges to attach from a new node to existing nodes</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>nx.Graph with opinion attribute</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="real_q_voter.simulation.run">
+<code class="sig-prename descclassname">real_q_voter.simulation.</code><code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param">g: networkx.classes.graph.Graph</em>, <em class="sig-param">q: int</em>, <em class="sig-param">p: float</em>, <em class="sig-param">eta: float = 0.2</em>, <em class="sig-param">n_iteration: int = 1000</em>, <em class="sig-param">preference_sampling=False</em><span class="sig-paren">)</span><a class="headerlink" href="#real_q_voter.simulation.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform simulation of q-voter model on <cite>g</cite> graph</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>g</strong> – nx.Graph (directed or undirected)</p></li>
+<li><p><strong>q</strong> – Number of agents in q-voter model</p></li>
+<li><p><strong>p</strong> – Independence factor</p></li>
+<li><p><strong>eta</strong> – Probability of conformity flip</p></li>
+<li><p><strong>n_iteration</strong> – Number of simulation steps</p></li>
+<li><p><strong>preference_sampling</strong> – Take into account degree of neighbours nodes while sampling for <cite>q</cite> nodes</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
 </div>
 
 
