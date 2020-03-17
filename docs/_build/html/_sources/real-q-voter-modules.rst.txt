@@ -1,7 +1,0 @@
-Real q-voter model
-==================
-
-.. toctree::
-    :maxdepth: 4
-
-    real-q-voter-metrics
