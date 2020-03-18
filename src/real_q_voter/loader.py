@@ -1,7 +1,7 @@
 import networkx as nx
 import os
 
-from real_q_voter.logger import get_logger
+from src.real_q_voter.logger import get_logger
 
 logger = get_logger('REAL-Q-VOTER-LOADER-LOGGER')
 

@@ -1,7 +1,7 @@
 import random
 
-from real_q_voter.metrics import *
-from real_q_voter.opinion import *
+from src.real_q_voter.metrics import *
+from src.real_q_voter.opinion import *
 
 
 def ba_graph_with_random_opinion(n, m=8) -> nx.Graph:

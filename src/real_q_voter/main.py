@@ -1,5 +1,5 @@
-from real_q_voter.simulation import *
-from real_q_voter.visualization import *
+from src.real_q_voter.simulation import *
+from src.real_q_voter.visualization import *
 
 
 def main():

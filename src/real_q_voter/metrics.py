@@ -1,8 +1,8 @@
 import networkx as nx
 import numpy as np
 
-from real_q_voter.opinion import has_opinion
-from real_q_voter.logger import get_logger
+from src.real_q_voter.opinion import has_opinion
+from src.real_q_voter.logger import get_logger
 
 logger = get_logger('REAL-Q-VOTER-METRICS-LOGGER')
 
