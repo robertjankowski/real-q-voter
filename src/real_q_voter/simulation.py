@@ -1,21 +1,10 @@
-from real_q_voter.metrics import *
 import random
-import logging
 
-logger = logging.getLogger('REAL-Q-VOTER-SIMULATION-LOGGER')
-
-
-def add_random_opinions(g: nx.Graph):
-    """
-    Initialize nodes of a graph with randomly generated opinions [-1, 1]
-
-    :param g: nx.Graph
-    """
-    for node in g.nodes():
-        g.nodes[node]['opinion'] = np.random.choice([0, 1], 1)
+from real_q_voter.metrics import *
+from real_q_voter.opinion import *
 
 
-def ba_graph_with_opinion(n, m=5) -> nx.Graph:
+def ba_graph_with_random_opinion(n, m=8) -> nx.Graph:
     """
     Construct BA network with randomly generated opinions
 
@@ -51,12 +40,12 @@ def run(g: nx.Graph,
     mean_opinions = []
     weighted_mean_opinions = []
     nodes = list(g.nodes)
-    for i in range(n_iteration):
+    for _ in range(n_iteration):
         node = random.choice(nodes)
         if np.random.rand() < p:
             # Act independently
             if np.random.rand() < 0.5:
-                _flip_opinion(g, node)
+                flip_opinion(g, node)
         else:
             # Conformity
             # TODO: add preference sampling using degree of neighbours nodes.
@@ -64,31 +53,24 @@ def run(g: nx.Graph,
             if len(neighbours) > q:
                 neighbours = neighbours[:q]
             while len(neighbours) < q:
+                # Add neighbour of neighbour
                 node_neighbour = random.choice(neighbours)
+                node_neighbour = list(g.neighbors(node_neighbour))
+                node_neighbour = random.choice(node_neighbour)
                 if node_neighbour != node:
                     neighbours.append(node_neighbour)
 
-            neighbours_opinions = [_get_opinion_of_node(g, n) for n in neighbours]
-            # TODO: add majority options
+            neighbours_opinions = [get_opinion_of_node(g, n) for n in neighbours]
             neighbours_opinions_total = sum(neighbours_opinions)
+            # TODO: add majority options
+            # Check if all agents have the same opinion
             if neighbours_opinions_total == len(neighbours_opinions) \
-                    or neighbours_opinions_total == 0:  # the same opinion
-                g.nodes[node]['opinion'] = _get_opinion_of_node(g, neighbours[0])
+                    or neighbours_opinions_total == -len(neighbours_opinions):
+                g.nodes[node]['opinion'] = get_opinion_of_node(g, neighbours[0])
             else:
                 if np.random.rand() < eta:
-                    _flip_opinion(g, node)
+                    flip_opinion(g, node)
 
         mean_opinions.append(calculate_mean_opinion(g))
         weighted_mean_opinions.append(calculate_weighted_mean_opinion(g))
     return mean_opinions, weighted_mean_opinions
-
-
-def _get_opinion_of_node(g, node):
-    if not has_opinion(g):
-        logger.error("Cannot get node opinion. Graph `g` has not attribute: `opinion`")
-        return
-    return g.nodes[node]['opinion']
-
-
-def _flip_opinion(g, node):
-    g.nodes[node]['opinion'] = 0 if _get_opinion_of_node(g, node) else 1

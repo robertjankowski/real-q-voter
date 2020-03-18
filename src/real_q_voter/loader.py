@@ -1,8 +1,9 @@
 import networkx as nx
 import os
-import logging
 
-logger = logging.getLogger('REAL-Q-VOTER-LOADER-LOGGER')
+from real_q_voter.logger import get_logger
+
+logger = get_logger('REAL-Q-VOTER-LOADER-LOGGER')
 
 
 def load_graph(filename: str, format_type: str = 'edge_list', is_directed=False):

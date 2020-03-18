@@ -1,8 +1,10 @@
 import networkx as nx
 import numpy as np
-import logging
 
-logger = logging.getLogger('REAL-Q-VOTER-METRICS-LOGGER')
+from real_q_voter.opinion import has_opinion
+from real_q_voter.logger import get_logger
+
+logger = get_logger('REAL-Q-VOTER-METRICS-LOGGER')
 
 
 def calculate_mean_opinion(g: nx.Graph):
@@ -39,15 +41,3 @@ def calculate_weighted_mean_opinion(g: nx.Graph):
             opinion = opinion[0]
         opinions.append(opinion)
     return np.average(np.array(opinions), weights=np.array(weights))
-
-
-def has_opinion(g: nx.Graph) -> bool:
-    """
-    Check if `g` graph has `opinion` attribute
-
-    :param g: nx.Graph
-    :return: True if `g` has `opinion` attribute, False otherwise
-    """
-    if nx.get_node_attributes(g, 'opinion'):
-        return True
-    return False
