@@ -32,11 +32,11 @@
       <div class="content" role="main">
         
         
-  <div class="section" id="module-real_q_voter.simulation">
-<span id="simulation-of-q-voter-model"></span><h1>Simulation of q-voter model<a class="headerlink" href="#module-real_q_voter.simulation" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="module-src.real_q_voter.simulation">
+<span id="simulation-of-q-voter-model"></span><h1>Simulation of q-voter model<a class="headerlink" href="#module-src.real_q_voter.simulation" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
-<dt id="real_q_voter.simulation.ba_graph_with_random_opinion">
-<code class="sig-prename descclassname">real_q_voter.simulation.</code><code class="sig-name descname">ba_graph_with_random_opinion</code><span class="sig-paren">(</span><em class="sig-param">n</em>, <em class="sig-param">m=8</em><span class="sig-paren">)</span> &#x2192; networkx.classes.graph.Graph<a class="headerlink" href="#real_q_voter.simulation.ba_graph_with_random_opinion" title="Permalink to this definition">¶</a></dt>
+<dt id="src.real_q_voter.simulation.ba_graph_with_random_opinion">
+<code class="sig-prename descclassname">src.real_q_voter.simulation.</code><code class="sig-name descname">ba_graph_with_random_opinion</code><span class="sig-paren">(</span><em class="sig-param">n</em>, <em class="sig-param">m=8</em><span class="sig-paren">)</span> &#x2192; networkx.classes.graph.Graph<a class="headerlink" href="#src.real_q_voter.simulation.ba_graph_with_random_opinion" title="Permalink to this definition">¶</a></dt>
 <dd><p>Construct BA network with randomly generated opinions</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -52,8 +52,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt id="real_q_voter.simulation.run">
-<code class="sig-prename descclassname">real_q_voter.simulation.</code><code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param">g: networkx.classes.graph.Graph</em>, <em class="sig-param">q: int</em>, <em class="sig-param">p: float</em>, <em class="sig-param">eta: float = 0.2</em>, <em class="sig-param">n_iteration: int = 1000</em>, <em class="sig-param">preference_sampling=False</em><span class="sig-paren">)</span><a class="headerlink" href="#real_q_voter.simulation.run" title="Permalink to this definition">¶</a></dt>
+<dt id="src.real_q_voter.simulation.run">
+<code class="sig-prename descclassname">src.real_q_voter.simulation.</code><code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param">g: networkx.classes.graph.Graph</em>, <em class="sig-param">q: int</em>, <em class="sig-param">p: float</em>, <em class="sig-param">eta: float = 0.2</em>, <em class="sig-param">n_iteration: int = 1000</em>, <em class="sig-param">preference_sampling=False</em>, <em class="sig-param">majority_conformity=False</em><span class="sig-paren">)</span><a class="headerlink" href="#src.real_q_voter.simulation.run" title="Permalink to this definition">¶</a></dt>
 <dd><p>Perform simulation of q-voter model on <cite>g</cite> graph</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -64,10 +64,12 @@
 <li><p><strong>eta</strong> – Probability of conformity flip</p></li>
 <li><p><strong>n_iteration</strong> – Number of simulation steps</p></li>
 <li><p><strong>preference_sampling</strong> – Take into account degree of neighbours nodes while sampling for <cite>q</cite> nodes</p></li>
+<li><p><strong>majority_conformity</strong> – True: In conformity state use majority votes of neighbors.
+False: All agents should have the same opinions.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p></p>
+<dd class="field-even"><p>(mean_opinions: list, weighted_mean_opinion: list)</p>
 </dd>
 </dl>
 </dd></dl>
