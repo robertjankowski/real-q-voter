@@ -22,7 +22,8 @@ def run(g: nx.Graph,
         p: float,
         eta: float = 0.2,
         n_iteration: int = 1000,
-        preference_sampling=False):
+        preference_sampling=False,
+        majority_conformity=False):
     """
     Perform simulation of q-voter model on `g` graph
 
@@ -32,7 +33,10 @@ def run(g: nx.Graph,
     :param eta: Probability of conformity flip
     :param n_iteration: Number of simulation steps
     :param preference_sampling: Take into account degree of neighbours nodes while sampling for `q` nodes
-    :return:
+    :param majority_conformity: True: In conformity state use majority votes of neighbors.
+        False: All agents should have the same opinions.
+
+    :return: (mean_opinions: list, weighted_mean_opinion: list)
     """
     if not has_opinion(g):
         logger.error("Cannot run simulation. Graph `g` has not attribute: `opinion`")
@@ -48,8 +52,9 @@ def run(g: nx.Graph,
                 flip_opinion(g, node)
         else:
             # Conformity
-            # TODO: add preference sampling using degree of neighbours nodes.
             neighbours = list(g.neighbors(node))
+            if preference_sampling:
+                neighbours = _get_nodes_with_most_degree(neighbours, g)
             if len(neighbours) > q:
                 neighbours = neighbours[:q]
             while len(neighbours) < q:
@@ -62,10 +67,14 @@ def run(g: nx.Graph,
 
             neighbours_opinions = [get_opinion_of_node(g, n) for n in neighbours]
             neighbours_opinions_total = sum(neighbours_opinions)
-            # TODO: add majority options
-            # Check if all agents have the same opinion
-            if neighbours_opinions_total == len(neighbours_opinions) \
-                    or neighbours_opinions_total == -len(neighbours_opinions):
+
+            if not majority_conformity:
+                is_conformity_neighbour = neighbours_opinions_total == len(neighbours_opinions) \
+                                          or neighbours_opinions_total == -len(neighbours_opinions)
+            else:
+                is_conformity_neighbour = neighbours_opinions_total > len(neighbours_opinions) / 2 \
+                                          or neighbours_opinions_total < -len(neighbours_opinions) / 2
+            if is_conformity_neighbour:
                 g.nodes[node]['opinion'] = get_opinion_of_node(g, neighbours[0])
             else:
                 if np.random.rand() < eta:
@@ -74,3 +83,9 @@ def run(g: nx.Graph,
         mean_opinions.append(calculate_mean_opinion(g))
         weighted_mean_opinions.append(calculate_weighted_mean_opinion(g))
     return mean_opinions, weighted_mean_opinions
+
+
+def _get_nodes_with_most_degree(neighbours, g: nx.Graph):
+    neighbours_degrees = g.degree(neighbours)
+    sorted_neighbours = sorted(neighbours_degrees, key=lambda x: x[1], reverse=True)
+    return list(map(lambda x: x[0], sorted_neighbours))

@@ -13,7 +13,8 @@ def main():
     ba = ba_graph_with_random_opinion(1000)
     for p in p_range:
         add_positive_opinions(ba)
-        mean_opinions, weighted_opinions = run(ba, 4, p=p, n_iteration=5000)
+        mean_opinions, weighted_opinions = run(ba, 4, p=p, n_iteration=5000, preference_sampling=True,
+                                               majority_conformity=True)
         m_opinion.append(np.mean(mean_opinions))
         w_opinion.append(np.mean(weighted_opinions))
 
