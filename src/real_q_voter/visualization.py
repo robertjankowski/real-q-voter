@@ -11,11 +11,9 @@ def plot_degree_distribution(g: nx.Graph, bins=50, filename=None):
     :param bins: number of bins for histogram
     :param filename: Name of the output figure
     """
-    degrees = _extract_degrees_from_graph(g)
-    degrees = np.histogram(degrees, bins=bins, density=True)
     fig, ax = plt.subplots()
 
-    if _is_directed_graph(g):
+    if nx.is_directed(g):
         in_degrees, out_degrees = _extract_degrees_from_graph(g, is_directed=True)
         in_degrees = np.histogram(in_degrees, bins=bins, density=True)
         out_degrees = np.histogram(out_degrees, bins=bins, density=True)
@@ -23,6 +21,8 @@ def plot_degree_distribution(g: nx.Graph, bins=50, filename=None):
         ax.loglog(out_degrees[1][:-1], out_degrees[0], label='out_degree')
         ax.legend()
     else:
+        degrees = _extract_degrees_from_graph(g)
+        degrees = np.histogram(degrees, bins=bins, density=True)
         ax.loglog(degrees[1][:-1], degrees[0])
     ax.set_xlabel('k')
     ax.set_ylabel('P(k)')
@@ -49,10 +49,6 @@ def plot_network(g: nx.Graph, filename=None, **parameters):
         plt.savefig('../../figures/' + filename + '.png', bbox_inches='tight', dpi=400)
     else:
         plt.show()
-
-
-def _is_directed_graph(g: nx.Graph) -> bool:
-    return nx.is_directed(g)
 
 
 def _extract_degrees_from_graph(g: nx.Graph, is_directed=False):

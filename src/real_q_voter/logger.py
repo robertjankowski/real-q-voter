@@ -8,4 +8,9 @@ def get_logger(name: str) -> logging.Logger:
     :param name: Name of logger
     :return: logging.Logger
     """
-    return logging.getLogger(name)
+    logger = logging.getLogger(name)
+    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+    sh = logging.StreamHandler()
+    sh.setFormatter(formatter)
+    logger.addHandler(sh)
+    return logger

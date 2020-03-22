@@ -10,11 +10,10 @@ def main():
     m_opinion = []
     w_opinion = []
     p_range = np.arange(0, 0.6, 0.1)
-    ba = ba_graph_with_random_opinion(1000)
+    ba = ba_graph_with_random_opinion(100)
     for p in p_range:
         add_positive_opinions(ba)
-        mean_opinions, weighted_opinions = run(ba, 4, p=p, n_iteration=5000, preference_sampling=True,
-                                               majority_conformity=True)
+        mean_opinions, weighted_opinions = run(ba, 4, p=p, n_iteration=5000)
         m_opinion.append(np.mean(mean_opinions))
         w_opinion.append(np.mean(weighted_opinions))
 

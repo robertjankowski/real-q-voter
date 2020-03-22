@@ -46,7 +46,7 @@ def has_opinion(g: nx.Graph) -> bool:
     return False
 
 
-def get_opinion_of_node(g, node):
+def get_opinion_of_node(g: nx.Graph, node):
     """
     Return opinion of given `node`
 
@@ -60,7 +60,7 @@ def get_opinion_of_node(g, node):
     return g.nodes[node]['opinion']
 
 
-def flip_opinion(g, node):
+def flip_opinion(g: nx.Graph, node):
     """
     Flip opinion of given node (-1 => 1, 1 => -1)
 
