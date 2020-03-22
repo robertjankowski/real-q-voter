@@ -1,7 +1,7 @@
-Model metrics
+Graph loader
 =============
 
-.. automodule:: src.real_q_voter.metrics
+.. automodule:: src.real_q_voter.loader
     :members:
         :undoc-members:
         :show-inheritance:

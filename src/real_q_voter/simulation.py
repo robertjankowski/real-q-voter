@@ -1,18 +1,127 @@
-import networkx as nx
-import numpy as np
+import random
+
+from src.real_q_voter.metrics import *
+from src.real_q_voter.opinion import *
 
 
-def add_random_opinions(g: nx.Graph):
+def ba_graph_with_random_opinion(n, m=8) -> nx.Graph:
     """
-    Initialize nodes of a graph with randomly generated opinions [-1, 1]
+    Construct BA network with randomly generated opinions
 
-    :param g: nx.Graph
+    :param n: Number of nodes
+    :param m: Number of edges to attach from a new node to existing nodes
+    :return: nx.Graph with opinion attribute
     """
-    for node in g.nodes():
-        g.nodes[node]['opinion'] = np.random.choice([-1, 1], 1)
-
-
-def ba_graph(n, m):
     g = nx.barabasi_albert_graph(n, m)
     add_random_opinions(g)
     return g
+
+
+def run(g: nx.Graph,
+        q: int,
+        p: float,
+        eta=0.2,
+        n_iteration=1000,
+        preference_sampling=False,
+        majority_conform=False):
+    """
+    Perform simulation of q-voter model on `g` graph
+
+    :param g: nx.Graph (directed or undirected)
+    :param q: Number of agents in q-voter model
+    :param p: Independence factor
+    :param eta: Probability of conformity flip
+    :param n_iteration: Number of simulation steps
+    :param preference_sampling: Take into account degree of neighbours nodes while sampling for `q` nodes
+    :param majority_conform: True: In conformity state use majority votes of neighbors.
+        False: All agents should have the same opinions.
+
+    :return: (mean_opinions: list, weighted_mean_opinions: list)
+    """
+    if not has_opinion(g):
+        logger.error("Cannot run simulation. Graph `g` has not attribute: `opinion`")
+        return
+    mean_opinions = []
+    weighted_mean_opinions = []
+    nodes = list(g.nodes)
+    for _ in range(n_iteration):
+        node = random.choice(nodes)
+        if np.random.rand() < p:
+            _act_independently(g, node)
+        else:
+            _act_conform(g, node, q, eta, preference_sampling, majority_conform)
+        mean_opinions.append(calculate_mean_opinion(g))
+        weighted_mean_opinions.append(calculate_weighted_mean_opinion(g))
+    return mean_opinions, weighted_mean_opinions
+
+
+def _act_independently(g: nx.Graph, node):
+    if np.random.rand() < 0.5:
+        flip_opinion(g, node)
+
+
+def _act_conform(g: nx.Graph, node, q: int, eta: float, preference_sampling: bool, majority_conform: bool):
+    neighbours = _get_neighbours_from_node(g, node, q, preference_sampling)
+    if _check_majority_conform(g, neighbours, majority_conform):
+        g.nodes[node]['opinion'] = get_opinion_of_node(g, neighbours[0])
+    else:
+        if np.random.rand() < eta:
+            flip_opinion(g, node)
+
+
+def _get_neighbours_from_node(g: nx.Graph, node, q: int, preference_sampling: bool):
+    """
+    Return `q` neighbours of given `node` with/without degree preferences.
+
+    :param g: nx.Graph
+    :param node: node from nx.Graph
+    :param q: number of neighbours
+    :param preference_sampling: Take into account degree of neighbours nodes while sampling for `q` nodes
+    :return: `q` neighbours
+    """
+    neighbours = list(g.neighbors(node))
+    if preference_sampling:
+        neighbours = _get_nodes_with_most_degree(neighbours, g)
+    if len(neighbours) > q:
+        neighbours = neighbours[:q]
+    while len(neighbours) < q:
+        # Add neighbour of neighbour
+        node_neighbour = random.choice(neighbours)
+        node_neighbour = list(g.neighbors(node_neighbour))
+        node_neighbour = random.choice(node_neighbour)
+        if node_neighbour != node:
+            neighbours.append(node_neighbour)
+    return neighbours
+
+
+def _check_majority_conform(g: nx.Graph, neighbours, majority_conform: bool):
+    """
+    Check if all or majority of neighbours has the same opinion
+
+    :param g: nx.Graph
+    :param neighbours: `q` neighbours
+    :param majority_conform: Use majority of votes?
+    :return: True if all/majority have the same opinion, False otherwise
+    """
+    neighbours_opinions = [get_opinion_of_node(g, n) for n in neighbours]
+    neighbours_opinions_total = sum(neighbours_opinions)
+    if not majority_conform:
+        is_conformity_neighbour = neighbours_opinions_total == len(neighbours_opinions) \
+                                  or neighbours_opinions_total == -len(neighbours_opinions)
+    else:
+        is_conformity_neighbour = neighbours_opinions_total > len(neighbours_opinions) / 2 \
+                                  or neighbours_opinions_total < -len(neighbours_opinions) / 2
+    return is_conformity_neighbour
+
+
+def _get_nodes_with_most_degree(neighbours, g: nx.Graph):
+    """
+    Return sorted neighbours by their degree (hubs are first).
+
+    :param neighbours: nodes from nx.Graph
+    :param g: nx.Graph
+    :return: sorted neighbours
+    """
+    neighbours_degrees = g.degree(neighbours)
+    sorted_neighbours = sorted(neighbours_degrees, key=lambda x: x[1], reverse=True)
+    return list(map(lambda x: x[0], sorted_neighbours))

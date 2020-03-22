@@ -1,7 +1,7 @@
-Simulation of q-voter model
+Agent opinion
 ===========================
 
-.. automodule:: src.real_q_voter.simulation
+.. automodule:: src.real_q_voter.opinion
     :members:
         :undoc-members:
         :show-inheritance:
