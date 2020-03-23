@@ -42,6 +42,7 @@ def plot_network(g: nx.Graph, show_opinion=False, filename=None, **plot_paramete
     Plot `g` network
 
     :param g: nx.Graph
+    :param show_opinion: Color plot by opinion?
     :param filename: Name of the output figure
     """
     spring_layout = nx.spring_layout(g)
