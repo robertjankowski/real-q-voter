@@ -37,14 +37,19 @@ def plot_degree_distribution(g: nx.Graph, bins=50, filename=None):
         plt.show()
 
 
-def plot_network(g: nx.Graph, filename=None, **parameters):
+def plot_network(g: nx.Graph, show_opinion=False, filename=None, **plot_parameters):
     """
     Plot `g` network
 
     :param g: nx.Graph
     :param filename: Name of the output figure
     """
-    nx.draw(g, node_size=30, alpha=0.2, **parameters)
+    spring_layout = nx.spring_layout(g)
+    opinions = None
+    if show_opinion:
+        opinions = np.array(list(nx.get_node_attributes(g, 'opinion').values()))
+    nx.draw(g, pos=spring_layout, node_color=opinions, node_size=30,
+            edge_color=[0, 0, 0, 0.2], cmap=plt.cm.jet, **plot_parameters)
     if filename:
         plt.savefig('../../figures/' + filename + '.png', bbox_inches='tight', dpi=400)
     else:

@@ -4,3 +4,4 @@ venv/
 tests/.coverage
 tests/__pycache__
 src/real_q_voter/__pycache__
+.pytest_cache
