@@ -38,13 +38,42 @@
   <div class="section" id="module-src.real_q_voter.loader">
 <span id="graph-loader"></span><h1>Graph loader<a class="headerlink" href="#module-src.real_q_voter.loader" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
+<dt id="src.real_q_voter.loader.add_graph_name">
+<code class="sig-prename descclassname">src.real_q_voter.loader.</code><code class="sig-name descname">add_graph_name</code><span class="sig-paren">(</span><em class="sig-param">g: networkx.classes.graph.Graph</em>, <em class="sig-param">name: str</em><span class="sig-paren">)</span><a class="headerlink" href="#src.real_q_voter.loader.add_graph_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add <cite>name</cite> attribute to graph</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>g</strong> – nx.Graph</p></li>
+<li><p><strong>name</strong> – Name of graph</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="src.real_q_voter.loader.has_name">
+<code class="sig-prename descclassname">src.real_q_voter.loader.</code><code class="sig-name descname">has_name</code><span class="sig-paren">(</span><em class="sig-param">g: networkx.classes.graph.Graph</em><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#src.real_q_voter.loader.has_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if given <cite>g</cite> graph has <cite>name</cite> attribute</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>g</strong> – nx.Graph</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True if <cite>g</cite> has <cite>name</cite>, False otherwise</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
 <dt id="src.real_q_voter.loader.load_graph">
-<code class="sig-prename descclassname">src.real_q_voter.loader.</code><code class="sig-name descname">load_graph</code><span class="sig-paren">(</span><em class="sig-param">filename: str</em>, <em class="sig-param">format_type='edge_list'</em>, <em class="sig-param">is_directed=False</em><span class="sig-paren">)</span><a class="headerlink" href="#src.real_q_voter.loader.load_graph" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">src.real_q_voter.loader.</code><code class="sig-name descname">load_graph</code><span class="sig-paren">(</span><em class="sig-param">filename: str</em>, <em class="sig-param">graph_name: str</em>, <em class="sig-param">format_type='edge_list'</em>, <em class="sig-param">is_directed=False</em><span class="sig-paren">)</span><a class="headerlink" href="#src.real_q_voter.loader.load_graph" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load directed or undirected graph from file with specific format</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>filename</strong> – File to read graph</p></li>
+<li><p><strong>graph_name</strong> – Graph name</p></li>
 <li><p><strong>format_type</strong> – File format of saved graph e.g.: <cite>edge_list</cite></p></li>
 <li><p><strong>is_directed</strong> – Load as directed graph?</p></li>
 </ul>

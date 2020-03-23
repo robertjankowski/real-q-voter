@@ -53,7 +53,7 @@
 
 <dl class="function">
 <dt id="src.real_q_voter.simulation.run">
-<code class="sig-prename descclassname">src.real_q_voter.simulation.</code><code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param">g: networkx.classes.graph.Graph</em>, <em class="sig-param">q: int</em>, <em class="sig-param">p: float</em>, <em class="sig-param">eta=0.2</em>, <em class="sig-param">n_iteration=1000</em>, <em class="sig-param">preference_sampling=False</em>, <em class="sig-param">majority_conform=False</em><span class="sig-paren">)</span><a class="headerlink" href="#src.real_q_voter.simulation.run" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">src.real_q_voter.simulation.</code><code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param">g: networkx.classes.graph.Graph</em>, <em class="sig-param">q: int</em>, <em class="sig-param">p: float</em>, <em class="sig-param">eta=0.2</em>, <em class="sig-param">n_iteration=1000</em>, <em class="sig-param">preference_sampling=False</em>, <em class="sig-param">majority_conform=False</em>, <em class="sig-param">save_plot_graphs=False</em><span class="sig-paren">)</span><a class="headerlink" href="#src.real_q_voter.simulation.run" title="Permalink to this definition">¶</a></dt>
 <dd><p>Perform simulation of q-voter model on <cite>g</cite> graph</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -66,6 +66,7 @@
 <li><p><strong>preference_sampling</strong> – Take into account degree of neighbours nodes while sampling for <cite>q</cite> nodes</p></li>
 <li><p><strong>majority_conform</strong> – True: In conformity state use majority votes of neighbors.
 False: All agents should have the same opinions.</p></li>
+<li><p><strong>save_plot_graphs</strong> – If save plot of network on each iteration</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>

@@ -1,5 +1,7 @@
 import random
 
+from src.real_q_voter.visualization import plot_network
+from src.real_q_voter.loader import add_graph_name, has_name
 from src.real_q_voter.metrics import *
 from src.real_q_voter.opinion import *
 
@@ -13,6 +15,7 @@ def ba_graph_with_random_opinion(n, m=8) -> nx.Graph:
     :return: nx.Graph with opinion attribute
     """
     g = nx.barabasi_albert_graph(n, m)
+    add_graph_name(g, 'ba')
     add_random_opinions(g)
     return g
 
@@ -23,7 +26,8 @@ def run(g: nx.Graph,
         eta=0.2,
         n_iteration=1000,
         preference_sampling=False,
-        majority_conform=False):
+        majority_conform=False,
+        save_plot_graphs=False):
     """
     Perform simulation of q-voter model on `g` graph
 
@@ -35,6 +39,7 @@ def run(g: nx.Graph,
     :param preference_sampling: Take into account degree of neighbours nodes while sampling for `q` nodes
     :param majority_conform: True: In conformity state use majority votes of neighbors.
         False: All agents should have the same opinions.
+    :param save_plot_graphs: If save plot of network on each iteration
 
     :return: (mean_opinions: list, weighted_mean_opinions: list)
     """
@@ -44,7 +49,7 @@ def run(g: nx.Graph,
     mean_opinions = []
     weighted_mean_opinions = []
     nodes = list(g.nodes)
-    for _ in range(n_iteration):
+    for i in range(n_iteration):
         node = random.choice(nodes)
         if np.random.rand() < p:
             _act_independently(g, node)
@@ -52,6 +57,10 @@ def run(g: nx.Graph,
             _act_conform(g, node, q, eta, preference_sampling, majority_conform)
         mean_opinions.append(calculate_mean_opinion(g))
         weighted_mean_opinions.append(calculate_weighted_mean_opinion(g))
+        if i % 10 == 0 and save_plot_graphs and has_name(g):
+            graph_name = g.graph['name']
+            title = f"{graph_name}_p={round(p, 3)}/{graph_name}_q={q}_p={round(p, 3)}_i={i}"
+            plot_network(g, title=title, show_opinion=True, filename=title)
     return mean_opinions, weighted_mean_opinions
 
 

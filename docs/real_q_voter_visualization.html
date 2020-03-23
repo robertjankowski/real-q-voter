@@ -38,6 +38,20 @@
   <div class="section" id="module-src.real_q_voter.visualization">
 <span id="graph-visualization"></span><h1>Graph visualization<a class="headerlink" href="#module-src.real_q_voter.visualization" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
+<dt id="src.real_q_voter.visualization.convert_images_to_gif">
+<code class="sig-prename descclassname">src.real_q_voter.visualization.</code><code class="sig-name descname">convert_images_to_gif</code><span class="sig-paren">(</span><em class="sig-param">input_path</em>, <em class="sig-param">output_name</em><span class="sig-paren">)</span><a class="headerlink" href="#src.real_q_voter.visualization.convert_images_to_gif" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert images into gif</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input_path</strong> – Input path e.g. <cite>../figures/*.png</cite></p></li>
+<li><p><strong>output_name</strong> – Output gif name in input_path directory</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
 <dt id="src.real_q_voter.visualization.plot_degree_distribution">
 <code class="sig-prename descclassname">src.real_q_voter.visualization.</code><code class="sig-name descname">plot_degree_distribution</code><span class="sig-paren">(</span><em class="sig-param">g: networkx.classes.graph.Graph</em>, <em class="sig-param">bins=50</em>, <em class="sig-param">filename=None</em><span class="sig-paren">)</span><a class="headerlink" href="#src.real_q_voter.visualization.plot_degree_distribution" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plot degree distribution of given <cite>g</cite> graph.</p>
@@ -54,12 +68,13 @@
 
 <dl class="function">
 <dt id="src.real_q_voter.visualization.plot_network">
-<code class="sig-prename descclassname">src.real_q_voter.visualization.</code><code class="sig-name descname">plot_network</code><span class="sig-paren">(</span><em class="sig-param">g: networkx.classes.graph.Graph</em>, <em class="sig-param">show_opinion=False</em>, <em class="sig-param">filename=None</em>, <em class="sig-param">**plot_parameters</em><span class="sig-paren">)</span><a class="headerlink" href="#src.real_q_voter.visualization.plot_network" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">src.real_q_voter.visualization.</code><code class="sig-name descname">plot_network</code><span class="sig-paren">(</span><em class="sig-param">g: networkx.classes.graph.Graph</em>, <em class="sig-param">title=''</em>, <em class="sig-param">show_opinion=False</em>, <em class="sig-param">filename=None</em>, <em class="sig-param">**plot_parameters</em><span class="sig-paren">)</span><a class="headerlink" href="#src.real_q_voter.visualization.plot_network" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plot <cite>g</cite> network</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>g</strong> – nx.Graph</p></li>
+<li><p><strong>title</strong> – Title of graph</p></li>
 <li><p><strong>show_opinion</strong> – Color plot by opinion?</p></li>
 <li><p><strong>filename</strong> – Name of the output figure</p></li>
 </ul>
