@@ -57,11 +57,19 @@ def run(g: nx.Graph,
             _act_conform(g, node, q, eta, preference_sampling, majority_conform)
         mean_opinions.append(calculate_mean_opinion(g))
         weighted_mean_opinions.append(calculate_weighted_mean_opinion(g))
-        if i % 10 == 0 and save_plot_graphs and has_name(g):
-            graph_name = g.graph['name']
-            title = f"{graph_name}_p={round(p, 3)}/{graph_name}_q={q}_p={round(p, 3)}_i={i}"
-            plot_network(g, title=title, show_opinion=True, filename=title)
+        if save_plot_graphs and has_name(g):
+            _save_plot_graphs(i, n_iteration, g, p, q)
     return mean_opinions, weighted_mean_opinions
+
+
+def _save_plot_graphs(i, n_iteration, g: nx.Graph, p: float, q: int):
+    # Save only 10 frames (network plots)
+    by = n_iteration / 10
+    if i % by == 0:
+        graph_name = g.graph['name']
+        iteration = str(i).zfill(len(str(n_iteration)))
+        title = f"{graph_name}_p={round(p, 3)}_q={q}/{graph_name}_q={q}_p={round(p, 3)}_i={iteration}"
+        plot_network(g, title=title, show_opinion=True, filename=title)
 
 
 def _act_independently(g: nx.Graph, node):

@@ -52,9 +52,10 @@ def plot_network(g: nx.Graph, title='', show_opinion=False, filename=None, **plo
     opinions = None
     if show_opinion:
         opinions = np.array(list(nx.get_node_attributes(g, 'opinion').values()))
+        opinions = ['red' if opinion == 1 else 'blue' for opinion in opinions]
 
     nx.draw(g, pos=nx.spring_layout(g, seed=42), node_color=opinions,
-            node_size=30, edge_color=[0, 0, 0, 0.2],
+            node_size=30, edge_color=[0, 0, 0, 0.2], alpha=0.6,
             cmap=plt.cm.jet, **plot_parameters)
     plt.title(title)
 
@@ -68,6 +69,24 @@ def plot_network(g: nx.Graph, title='', show_opinion=False, filename=None, **plo
     plt.show()
 
 
+def plot_mean_opinion_independence_factor(p_range: list, mean_opinions: list, weighted_mean_opinions: list):
+    """
+    Plot relationship between independence factor and mean opinions
+
+    :param p_range: Range of `p` independence factor
+    :param mean_opinions: List of lists mean opinions
+    :param weighted_mean_opinions: List of lists weighted opinion
+    """
+    m = [np.mean(m) for m in mean_opinions]
+    w = [np.mean(w) for w in weighted_mean_opinions]
+    plt.plot(p_range, m, label='mean opinion')
+    plt.plot(p_range, w, label='weighted mean opinion')
+    plt.xlabel('p')
+    plt.ylabel('<s>')
+    plt.legend()
+    plt.show()
+
+
 def convert_images_to_gif(input_path, output_name):
     """
     Convert images into gif
@@ -78,7 +97,7 @@ def convert_images_to_gif(input_path, output_name):
     output_path = '/'.join(input_path.split('/')[:-1]) + '/' + output_name + '.gif'
     img, *imgs = [Image.open(f) for f in sorted(glob.glob(input_path))]
     img.save(fp=output_path, format='GIF', append_images=imgs,
-             save_all=True, duration=200, loop=0)
+             save_all=True, duration=400, loop=0)
 
 
 def _extract_degrees_from_graph(g: nx.Graph, is_directed=False):
