@@ -31,6 +31,7 @@ def test_get_opinion_of_node():
 
 def test_flip_opinion():
     g = nx.complete_graph(5)
+    assert flip_opinion(g, 1) is None
     add_negative_opinions(g)
     [flip_opinion(g, node) for node in g.nodes]
     assert all([get_opinion_of_node(g, node) == 1 for node in g.nodes])

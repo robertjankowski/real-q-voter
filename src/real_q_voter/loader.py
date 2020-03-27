@@ -49,6 +49,6 @@ def has_name(g: nx.Graph) -> bool:
     :param g: nx.Graph
     :return: True if `g` has `name`, False otherwise
     """
-    if g.graph['name']:
+    if 'name' in g.graph:
         return True
     return False

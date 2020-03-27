@@ -12,3 +12,10 @@ def test_loader_wrong_format_type():
 def test_loader_correct_graph():
     g = load_graph('tests/test_graph.mtx', 'example_graph')
     assert len(list(g.nodes())) > 0
+
+
+def test_has_name():
+    g = nx.complete_graph(2)
+    assert has_name(g) is False
+    add_graph_name(g, 'complete_graph')
+    assert has_name(g) is True
