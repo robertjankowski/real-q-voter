@@ -1,45 +1,65 @@
-
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
     <title>Graph visualization &#8212; real-q-voter  documentation</title>
-    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pydoctheme.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/sidebar.js"></script>
+    
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Simulation of q-voter model" href="real_q_voter_simulation.html" />
-    <link rel="prev" title="Agent opinion" href="real_q_voter_opinion.html" /> 
-  </head><body>
-      <div class="header" role="banner"><h1 class="heading"><a href="index.html">
-          <span>real-q-voter  documentation</span></a></h1>
-        <h2 class="heading"><span>Graph visualization</span></h2>
-      </div>
-      <div class="topnav" role="navigation" aria-label="top navigation">
-      
-        <p>
-        «&#160;&#160;<a href="real_q_voter_opinion.html">Agent opinion</a>
-        &#160;&#160;::&#160;&#160;
-        <a class="uplink" href="index.html">Contents</a>
-        &#160;&#160;::&#160;&#160;
-        <a href="real_q_voter_simulation.html">Simulation of q-voter model</a>&#160;&#160;»
-        </p>
+    <link rel="prev" title="Agent opinion" href="real_q_voter_opinion.html" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link rel="shortcut icon" type="image/png" href="_static/favicon.png" />
+    <meta name="viewport" content="width=device-width,initial-scale=0.8">
+    
+    
 
-      </div>
-      <div class="content" role="main">
-        
-        
+  </head><body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="responsive-menu"><a href="#sidebar-anchor" title="Navigation">&#9776;</a></li>
+        <li><a href="index.html">real-q-voter  documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
   <div class="section" id="module-src.real_q_voter.visualization">
 <span id="graph-visualization"></span><h1>Graph visualization<a class="headerlink" href="#module-src.real_q_voter.visualization" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
+<dt id="src.real_q_voter.visualization.convert_images_to_gif">
+<code class="sig-prename descclassname">src.real_q_voter.visualization.</code><code class="sig-name descname">convert_images_to_gif</code><span class="sig-paren">(</span><em class="sig-param">input_path: str</em>, <em class="sig-param">output_name: str</em><span class="sig-paren">)</span><a class="headerlink" href="#src.real_q_voter.visualization.convert_images_to_gif" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert images into gif</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input_path</strong> – Input path e.g. <cite>../figures/*.png</cite></p></li>
+<li><p><strong>output_name</strong> – Output gif name in input_path directory</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
 <dt id="src.real_q_voter.visualization.plot_degree_distribution">
-<code class="sig-prename descclassname">src.real_q_voter.visualization.</code><code class="sig-name descname">plot_degree_distribution</code><span class="sig-paren">(</span><em class="sig-param">g: networkx.classes.graph.Graph</em>, <em class="sig-param">bins=50</em>, <em class="sig-param">filename=None</em><span class="sig-paren">)</span><a class="headerlink" href="#src.real_q_voter.visualization.plot_degree_distribution" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">src.real_q_voter.visualization.</code><code class="sig-name descname">plot_degree_distribution</code><span class="sig-paren">(</span><em class="sig-param">g: networkx.classes.graph.Graph</em>, <em class="sig-param">bins=50</em>, <em class="sig-param">filename=None</em>, <em class="sig-param">file_extension='png'</em><span class="sig-paren">)</span><a class="headerlink" href="#src.real_q_voter.visualization.plot_degree_distribution" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plot degree distribution of given <cite>g</cite> graph.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -47,6 +67,24 @@
 <li><p><strong>g</strong> – nx.Graph (directed or undirected)</p></li>
 <li><p><strong>bins</strong> – number of bins for histogram</p></li>
 <li><p><strong>filename</strong> – Name of the output figure</p></li>
+<li><p><strong>file_extension</strong> – Extension of the output plot</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="src.real_q_voter.visualization.plot_mean_opinion_independence_factor">
+<code class="sig-prename descclassname">src.real_q_voter.visualization.</code><code class="sig-name descname">plot_mean_opinion_independence_factor</code><span class="sig-paren">(</span><em class="sig-param">p_range: list</em>, <em class="sig-param">mean_opinions: list</em>, <em class="sig-param">weighted_mean_opinions: list</em>, <em class="sig-param">filename=None</em>, <em class="sig-param">file_extension='png'</em><span class="sig-paren">)</span><a class="headerlink" href="#src.real_q_voter.visualization.plot_mean_opinion_independence_factor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot relationship between independence factor and mean opinions</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p_range</strong> – Range of <cite>p</cite> independence factor</p></li>
+<li><p><strong>mean_opinions</strong> – List of lists mean opinions</p></li>
+<li><p><strong>weighted_mean_opinions</strong> – List of lists weighted opinion</p></li>
+<li><p><strong>filename</strong> – Name of the output figure</p></li>
+<li><p><strong>file_extension</strong> – Extension of the output plot</p></li>
 </ul>
 </dd>
 </dl>
@@ -54,13 +92,16 @@
 
 <dl class="function">
 <dt id="src.real_q_voter.visualization.plot_network">
-<code class="sig-prename descclassname">src.real_q_voter.visualization.</code><code class="sig-name descname">plot_network</code><span class="sig-paren">(</span><em class="sig-param">g: networkx.classes.graph.Graph</em>, <em class="sig-param">filename=None</em>, <em class="sig-param">**parameters</em><span class="sig-paren">)</span><a class="headerlink" href="#src.real_q_voter.visualization.plot_network" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">src.real_q_voter.visualization.</code><code class="sig-name descname">plot_network</code><span class="sig-paren">(</span><em class="sig-param">g: networkx.classes.graph.Graph</em>, <em class="sig-param">title=''</em>, <em class="sig-param">show_opinion=False</em>, <em class="sig-param">filename=None</em>, <em class="sig-param">file_extension='png'</em>, <em class="sig-param">**plot_parameters</em><span class="sig-paren">)</span><a class="headerlink" href="#src.real_q_voter.visualization.plot_network" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plot <cite>g</cite> network</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>g</strong> – nx.Graph</p></li>
+<li><p><strong>title</strong> – Title of graph</p></li>
+<li><p><strong>show_opinion</strong> – Color network by opinion?</p></li>
 <li><p><strong>filename</strong> – Name of the output figure</p></li>
+<li><p><strong>file_extension</strong> – Extension of the output plot</p></li>
 </ul>
 </dd>
 </dl>
@@ -69,18 +110,58 @@
 </div>
 
 
+          </div>
+        </div>
       </div>
-      <div class="bottomnav" role="navigation" aria-label="bottom navigation">
-      
-        <p>
-        «&#160;&#160;<a href="real_q_voter_opinion.html">Agent opinion</a>
-        &#160;&#160;::&#160;&#160;
-        <a class="uplink" href="index.html">Contents</a>
-        &#160;&#160;::&#160;&#160;
-        <a href="real_q_voter_simulation.html">Simulation of q-voter model</a>&#160;&#160;»
-        </p>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+    <a id="sidebar-anchor"></a>
+    
 
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="real_q_voter_opinion.html"
+                        title="previous chapter">Agent opinion</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="real_q_voter_simulation.html"
+                        title="next chapter">Simulation of q-voter model</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/real_q_voter_visualization.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
       </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="real_q_voter_simulation.html" title="Simulation of q-voter model"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="real_q_voter_opinion.html" title="Agent opinion"
+             accesskey="P">previous</a> |</li>
+      </ul>
+    </div>
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2020, Robert Jankowski.

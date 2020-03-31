@@ -2,8 +2,8 @@ Welcome to real-q-voter's documentation!
 ========================================
 
 .. toctree::
-   :maxdepth: 2
-   :caption: Contents:
+   :includehidden:
+   :caption: Table of Contents
 
    real_q_voter_metrics
    real_q_voter_loader
@@ -11,6 +11,7 @@ Welcome to real-q-voter's documentation!
    real_q_voter_visualization
    real_q_voter_simulation
 
+.. contents:: :local:
 
 Indices and tables
 ==================
