@@ -3,16 +3,21 @@ import matplotlib.pyplot as plt
 import networkx as nx
 import numpy as np
 import glob
+from src.real_q_voter.logger import get_logger
+from itertools import accumulate
 from PIL import Image
 
+logger = get_logger('REAL-Q-VOTER-VISUALIZATION-LOGGER')
 
-def plot_degree_distribution(g: nx.Graph, bins=50, filename=None):
+
+def plot_degree_distribution(g: nx.Graph, bins=50, filename=None, file_extension='png'):
     """
     Plot degree distribution of given `g` graph.
 
     :param g: nx.Graph (directed or undirected)
     :param bins: number of bins for histogram
     :param filename: Name of the output figure
+    :param file_extension: Extension of the output plot
     """
     fig, ax = plt.subplots()
 
@@ -35,19 +40,20 @@ def plot_degree_distribution(g: nx.Graph, bins=50, filename=None):
     ax.tick_params(which="major", axis="y", direction="in")
 
     if filename:
-        plt.savefig('../../figures/' + filename + '.png', bbox_inches='tight', dpi=400)
+        _save_plot_as('../../figures/' + filename, file_extension)
     else:
         plt.show()
 
 
-def plot_network(g: nx.Graph, title='', show_opinion=False, filename=None, **plot_parameters):
+def plot_network(g: nx.Graph, title='', show_opinion=False, filename=None, file_extension='png', **plot_parameters):
     """
     Plot `g` network
 
     :param g: nx.Graph
     :param title: Title of graph
-    :param show_opinion: Color plot by opinion?
+    :param show_opinion: Color network by opinion?
     :param filename: Name of the output figure
+    :param file_extension: Extension of the output plot
     """
     opinions = None
     if show_opinion:
@@ -61,33 +67,37 @@ def plot_network(g: nx.Graph, title='', show_opinion=False, filename=None, **plo
 
     if filename:
         base_path = '../../figures/'
-        folder = base_path + filename.split('/')[0]
-        if not os.path.exists(folder):
-            os.makedirs(folder)
-        plt.savefig(base_path + filename + '.png', bbox_inches='tight', dpi=400)
+        _create_folders(base_path, filename)
+        _save_plot_as(base_path + filename, file_extension)
         plt.close()
     plt.show()
 
 
-def plot_mean_opinion_independence_factor(p_range: list, mean_opinions: list, weighted_mean_opinions: list):
+def plot_mean_opinion_independence_factor(p_range: list, mean_opinions: list, weighted_mean_opinions: list,
+                                          filename=None, file_extension='png'):
     """
     Plot relationship between independence factor and mean opinions
 
     :param p_range: Range of `p` independence factor
     :param mean_opinions: List of lists mean opinions
     :param weighted_mean_opinions: List of lists weighted opinion
+    :param filename: Name of the output figure
+    :param file_extension: Extension of the output plot
     """
     m = [np.mean(m) for m in mean_opinions]
     w = [np.mean(w) for w in weighted_mean_opinions]
     plt.plot(p_range, m, label='mean opinion')
     plt.plot(p_range, w, label='weighted mean opinion')
     plt.xlabel('p')
-    plt.ylabel('<s>')
+    plt.ylabel(r'$\left<s\right>$')
     plt.legend()
-    plt.show()
+    if filename:
+        _save_plot_as('../../figures/' + filename, file_extension)
+    else:
+        plt.show()
 
 
-def convert_images_to_gif(input_path, output_name):
+def convert_images_to_gif(input_path: str, output_name: str):
     """
     Convert images into gif
 
@@ -100,6 +110,16 @@ def convert_images_to_gif(input_path, output_name):
              save_all=True, duration=400, loop=0)
 
 
+def _create_folders(base_path: str, filename: str):
+    folders_names = filename.split('/')[:-1]
+    folders_names = [folder + '/' for folder in folders_names]
+    folders_names = list(accumulate(folders_names))
+    folders = [base_path + folder for folder in folders_names]
+    for folder in folders:
+        if not os.path.exists(folder):
+            os.makedirs(folder)
+
+
 def _extract_degrees_from_graph(g: nx.Graph, is_directed=False):
     if is_directed:
         in_degrees = list(map(lambda x: x[1], g.in_degree))
@@ -108,3 +128,13 @@ def _extract_degrees_from_graph(g: nx.Graph, is_directed=False):
     else:
         degrees = list(map(lambda x: x[1], g.degree))
         return degrees
+
+
+def _save_plot_as(filename: str, extension: str):
+    if extension is 'png':
+        plt.savefig(filename + '.png', bbox_inches='tight', dpi=400)
+    elif extension is 'pdf':
+        plt.savefig(filename + '.pdf')
+    else:
+        logger.error('Cannot save plot. Unsupported extension')
+    plt.close()
