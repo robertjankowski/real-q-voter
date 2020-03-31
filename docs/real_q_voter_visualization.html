@@ -45,7 +45,7 @@
 <span id="graph-visualization"></span><h1>Graph visualization<a class="headerlink" href="#module-src.real_q_voter.visualization" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="src.real_q_voter.visualization.convert_images_to_gif">
-<code class="sig-prename descclassname">src.real_q_voter.visualization.</code><code class="sig-name descname">convert_images_to_gif</code><span class="sig-paren">(</span><em class="sig-param">input_path</em>, <em class="sig-param">output_name</em><span class="sig-paren">)</span><a class="headerlink" href="#src.real_q_voter.visualization.convert_images_to_gif" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">src.real_q_voter.visualization.</code><code class="sig-name descname">convert_images_to_gif</code><span class="sig-paren">(</span><em class="sig-param">input_path: str</em>, <em class="sig-param">output_name: str</em><span class="sig-paren">)</span><a class="headerlink" href="#src.real_q_voter.visualization.convert_images_to_gif" title="Permalink to this definition">¶</a></dt>
 <dd><p>Convert images into gif</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -59,7 +59,7 @@
 
 <dl class="function">
 <dt id="src.real_q_voter.visualization.plot_degree_distribution">
-<code class="sig-prename descclassname">src.real_q_voter.visualization.</code><code class="sig-name descname">plot_degree_distribution</code><span class="sig-paren">(</span><em class="sig-param">g: networkx.classes.graph.Graph</em>, <em class="sig-param">bins=50</em>, <em class="sig-param">filename=None</em><span class="sig-paren">)</span><a class="headerlink" href="#src.real_q_voter.visualization.plot_degree_distribution" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">src.real_q_voter.visualization.</code><code class="sig-name descname">plot_degree_distribution</code><span class="sig-paren">(</span><em class="sig-param">g: networkx.classes.graph.Graph</em>, <em class="sig-param">bins=50</em>, <em class="sig-param">filename=None</em>, <em class="sig-param">file_extension='png'</em><span class="sig-paren">)</span><a class="headerlink" href="#src.real_q_voter.visualization.plot_degree_distribution" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plot degree distribution of given <cite>g</cite> graph.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -67,6 +67,7 @@
 <li><p><strong>g</strong> – nx.Graph (directed or undirected)</p></li>
 <li><p><strong>bins</strong> – number of bins for histogram</p></li>
 <li><p><strong>filename</strong> – Name of the output figure</p></li>
+<li><p><strong>file_extension</strong> – Extension of the output plot</p></li>
 </ul>
 </dd>
 </dl>
@@ -74,7 +75,7 @@
 
 <dl class="function">
 <dt id="src.real_q_voter.visualization.plot_mean_opinion_independence_factor">
-<code class="sig-prename descclassname">src.real_q_voter.visualization.</code><code class="sig-name descname">plot_mean_opinion_independence_factor</code><span class="sig-paren">(</span><em class="sig-param">p_range: list</em>, <em class="sig-param">mean_opinions: list</em>, <em class="sig-param">weighted_mean_opinions: list</em><span class="sig-paren">)</span><a class="headerlink" href="#src.real_q_voter.visualization.plot_mean_opinion_independence_factor" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">src.real_q_voter.visualization.</code><code class="sig-name descname">plot_mean_opinion_independence_factor</code><span class="sig-paren">(</span><em class="sig-param">p_range: list</em>, <em class="sig-param">mean_opinions: list</em>, <em class="sig-param">weighted_mean_opinions: list</em>, <em class="sig-param">filename=None</em>, <em class="sig-param">file_extension='png'</em><span class="sig-paren">)</span><a class="headerlink" href="#src.real_q_voter.visualization.plot_mean_opinion_independence_factor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plot relationship between independence factor and mean opinions</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -82,6 +83,8 @@
 <li><p><strong>p_range</strong> – Range of <cite>p</cite> independence factor</p></li>
 <li><p><strong>mean_opinions</strong> – List of lists mean opinions</p></li>
 <li><p><strong>weighted_mean_opinions</strong> – List of lists weighted opinion</p></li>
+<li><p><strong>filename</strong> – Name of the output figure</p></li>
+<li><p><strong>file_extension</strong> – Extension of the output plot</p></li>
 </ul>
 </dd>
 </dl>
@@ -89,15 +92,16 @@
 
 <dl class="function">
 <dt id="src.real_q_voter.visualization.plot_network">
-<code class="sig-prename descclassname">src.real_q_voter.visualization.</code><code class="sig-name descname">plot_network</code><span class="sig-paren">(</span><em class="sig-param">g: networkx.classes.graph.Graph</em>, <em class="sig-param">title=''</em>, <em class="sig-param">show_opinion=False</em>, <em class="sig-param">filename=None</em>, <em class="sig-param">**plot_parameters</em><span class="sig-paren">)</span><a class="headerlink" href="#src.real_q_voter.visualization.plot_network" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">src.real_q_voter.visualization.</code><code class="sig-name descname">plot_network</code><span class="sig-paren">(</span><em class="sig-param">g: networkx.classes.graph.Graph</em>, <em class="sig-param">title=''</em>, <em class="sig-param">show_opinion=False</em>, <em class="sig-param">filename=None</em>, <em class="sig-param">file_extension='png'</em>, <em class="sig-param">**plot_parameters</em><span class="sig-paren">)</span><a class="headerlink" href="#src.real_q_voter.visualization.plot_network" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plot <cite>g</cite> network</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>g</strong> – nx.Graph</p></li>
 <li><p><strong>title</strong> – Title of graph</p></li>
-<li><p><strong>show_opinion</strong> – Color plot by opinion?</p></li>
+<li><p><strong>show_opinion</strong> – Color network by opinion?</p></li>
 <li><p><strong>filename</strong> – Name of the output figure</p></li>
+<li><p><strong>file_extension</strong> – Extension of the output plot</p></li>
 </ul>
 </dd>
 </dl>

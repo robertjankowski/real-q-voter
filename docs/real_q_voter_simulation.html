@@ -74,11 +74,32 @@
 <li><p><strong>preference_sampling</strong> – Take into account degree of neighbours nodes while sampling for <cite>q</cite> nodes</p></li>
 <li><p><strong>majority_conform</strong> – True: In conformity state use majority votes of neighbors.
 False: All agents should have the same opinions.</p></li>
-<li><p><strong>save_plot_graphs</strong> – If save plot of network on each iteration</p></li>
+<li><p><strong>save_plot_graphs</strong> – Save plot of network (10 snapshots)?</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>(mean_opinions: list, weighted_mean_opinions: list)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="src.real_q_voter.simulation.run_simulation">
+<code class="sig-prename descclassname">src.real_q_voter.simulation.</code><code class="sig-name descname">run_simulation</code><span class="sig-paren">(</span><em class="sig-param">g: networkx.classes.graph.Graph</em>, <em class="sig-param">q: int</em>, <em class="sig-param">p_range: list</em>, <em class="sig-param">n_iteration: int</em>, <em class="sig-param">save_plot_graphs=False</em><span class="sig-paren">)</span><a class="headerlink" href="#src.real_q_voter.simulation.run_simulation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run multiple q-voter simulation for given <cite>p_range</cite> values</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>g</strong> – nx.Graph</p></li>
+<li><p><strong>q</strong> – Number of agent in q-voter model</p></li>
+<li><p><strong>p_range</strong> – Range of <cite>p</cite> (independence factor)</p></li>
+<li><p><strong>n_iteration</strong> – Number of iterations of the single run (per one <cite>p</cite> value)</p></li>
+<li><p><strong>save_plot_graphs</strong> – Save images of network?</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Tuple of mean opinions, each list has list per <cite>p</cite> value,
+e.g., <cite>mean_opinion = [[values_for_p=0.1], [values_for_p=0.2], …, ]</cite></p>
 </dd>
 </dl>
 </dd></dl>
