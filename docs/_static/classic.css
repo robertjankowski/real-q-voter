@@ -13,11 +13,6 @@
 
 /* -- page layout ----------------------------------------------------------- */
 
-html {
-    /* CSS hack for macOS's scrollbar (see #1125) */
-    background-color: #FFFFFF;
-}
-
 body {
     font-family: 'Palatino', 'Palatino Linotype', 'URW Palladio L', 'Century Schoolbook L', 'Georgia', serif;
     font-size: 100%;
@@ -243,7 +238,7 @@ code {
     font-size: 0.95em;
 }
 
-th, dl.field-list > dt {
+th {
     background-color: #ede;
 }
 

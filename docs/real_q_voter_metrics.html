@@ -71,6 +71,36 @@
 </dl>
 </dd></dl>
 
+<dl class="function">
+<dt id="src.real_q_voter.metrics.read_metrics">
+<code class="sig-prename descclassname">src.real_q_voter.metrics.</code><code class="sig-name descname">read_metrics</code><span class="sig-paren">(</span><em class="sig-param">filename: str</em><span class="sig-paren">)</span><a class="headerlink" href="#src.real_q_voter.metrics.read_metrics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read (mean opinions or weighted mean opinions) metrics from file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>filename</strong> – Name of the file</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>(p_range, opinions)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="src.real_q_voter.metrics.save_metrics">
+<code class="sig-prename descclassname">src.real_q_voter.metrics.</code><code class="sig-name descname">save_metrics</code><span class="sig-paren">(</span><em class="sig-param">filename: str</em>, <em class="sig-param">p_range: list</em>, <em class="sig-param">mean_opinions: list = None</em>, <em class="sig-param">weighted_mean_opinions: list = None</em><span class="sig-paren">)</span><a class="headerlink" href="#src.real_q_voter.metrics.save_metrics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save to file opinions metrics</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> – Name of file</p></li>
+<li><p><strong>p_range</strong> – Independence factor range</p></li>
+<li><p><strong>mean_opinions</strong> – List of list per single <cite>p</cite> values</p></li>
+<li><p><strong>weighted_mean_opinions</strong> – List of list per single <cite>p</cite> values</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
 </div>
 
 
@@ -129,7 +159,7 @@
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2020, Robert Jankowski.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.2.0.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.2.
     </div>
   </body>
 </html>
