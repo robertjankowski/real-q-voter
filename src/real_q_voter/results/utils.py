@@ -4,7 +4,7 @@ import pandas as pd
 import re
 import matplotlib.pyplot as plt
 
-from src.real_q_voter.metrics import read_metrics
+# from src.real_q_voter.metrics import read_metrics
 
 
 def filter_files_by(files: list, query: str):
@@ -19,8 +19,10 @@ def plot_experiment(files, with_weighted_opinion=False, show_q=False):
             continue
         result.columns = ['p_range', opinion_type]
         plot_label = extract_name(f) + ' ' + opinion_type
+        plot_label = plot_label.split('/')[-1]
         if show_q:
             plot_label += ' ' + extract_q(f)
+        plt.grid(alpha=0.3)
         plt.plot(result['p_range'], result[opinion_type], label=plot_label)
 
     plt.xlabel('p')
@@ -64,6 +66,8 @@ def convert_old_format_results(path):
 
 
 if __name__ == '__main__':
-    # convert_old_format_results("../../../results/q-experiment/*.csv")
+    # convert_old_format_results("../../../results/q-experiment-new/*.csv")
     # convert_old_format_results("../../../results/preference-sampling-experiment/*.csv")
-    convert_old_format_results("../../../results/majority-voting-experiment/*.csv")
+    # convert_old_format_results("../../../results/majority-voting-experiment/*.csv")
+    convert_old_format_results(
+        "../../../results/directed-undirected-experiment/*.csv")
