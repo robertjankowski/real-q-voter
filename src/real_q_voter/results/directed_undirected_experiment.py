@@ -40,12 +40,12 @@ def plot_by_q(dataset: str, with_weighted_opinion=False, filename=None, pdf=Fals
 def main():
     plot_by_q("health", with_weighted_opinion=False,
               filename='directed_undirected_all', pdf=True)
-    plot_by_dataset(2, with_weighted_opinion=True,
-                    filename='directed_undirected_q=2', pdf=True)
-    plot_by_dataset(3, with_weighted_opinion=True,
-                    filename='directed_undirected_q=3', pdf=True)
-    plot_by_dataset(4, with_weighted_opinion=True,
-                    filename='directed_undirected_q=4', pdf=True)
+    # plot_by_dataset(2, with_weighted_opinion=True,
+    #                 filename='directed_undirected_q=2', pdf=False)
+    # plot_by_dataset(3, with_weighted_opinion=True,
+    #                 filename='directed_undirected_q=3', pdf=False)
+    # plot_by_dataset(4, with_weighted_opinion=True,
+    #                 filename='directed_undirected_q=4', pdf=False)
 
 
 if __name__ == '__main__':

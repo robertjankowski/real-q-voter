@@ -3,7 +3,8 @@ import numpy as np
 import pandas as pd
 import re
 import matplotlib.pyplot as plt
-
+import matplotlib.colors as mcolors
+import random
 
 def read_metrics(filename: str):
     opinions = []
@@ -18,8 +19,11 @@ def filter_files_by(files: list, query: str):
     return [f for f in files if query in f]
 
 
-def plot_experiment(files, with_weighted_opinion=False, show_q=False):
-    for f in files:
+def plot_experiment(files, with_weighted_opinion=False, show_q=False, col=None):
+    colors = list(dict(mcolors.TABLEAU_COLORS).values())
+    colors.insert(0, 'k')
+    colors.append('lime')
+    for i, f in enumerate(files):
         result = pd.read_csv(f)
         opinion_type = extract_opinion_type(f)
         if not with_weighted_opinion and 'weighted_mean_opinion' in opinion_type:
@@ -30,7 +34,13 @@ def plot_experiment(files, with_weighted_opinion=False, show_q=False):
         if show_q:
             plot_label += ' ' + extract_q(f)
         plt.grid(alpha=0.3)
-        plt.plot(result['p_range'], result[opinion_type], label=plot_label)
+        if col:
+            colors[i] = col
+        plt.scatter(result['p_range'], result[opinion_type],
+                    color=colors[i])
+        plt.plot(result['p_range'], result[opinion_type],
+                 color=colors[i], alpha=0.6)
+        plt.plot([], [], '-o', label=plot_label, color=colors[i])
 
     plt.xlabel('p')
     plt.ylabel('opinion')
