@@ -24,7 +24,7 @@ def plot_majority_voting_experiment(with_weighted_opinion=False, q=None, filenam
 
 
 def main():
-    plot_majority_voting_experiment(filename='majority_voting_all', pdf=True)
+    plot_majority_voting_experiment(filename='majority_voting_all', pdf=False)
 
 
 if __name__ == '__main__':

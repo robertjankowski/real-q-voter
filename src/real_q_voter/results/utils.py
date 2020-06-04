@@ -4,7 +4,14 @@ import pandas as pd
 import re
 import matplotlib.pyplot as plt
 
-# from src.real_q_voter.metrics import read_metrics
+
+def read_metrics(filename: str):
+    opinions = []
+    df = pd.read_csv(filename)
+    for col in df.columns:
+        opinions.append(df[col].values)
+    p_range = df.columns.astype('float').values
+    return p_range, opinions
 
 
 def filter_files_by(files: list, query: str):
@@ -58,7 +65,7 @@ def convert_old_format_results(path):
 
     for f in files:
         p_range, opinion = read_metrics(f)
-        opinion = np.mean(opinion, axis=1)
+        opinion = np.transpose(opinion)[-1]  # last opinion from simulation
         df = pd.DataFrame(data={'p_range': p_range, 'opinion': opinion})
         save_file = f.split('.csv')[0]
         save_file = save_file + '.txt'
@@ -66,8 +73,8 @@ def convert_old_format_results(path):
 
 
 if __name__ == '__main__':
-    # convert_old_format_results("../../../results/q-experiment-new/*.csv")
-    # convert_old_format_results("../../../results/preference-sampling-experiment/*.csv")
-    # convert_old_format_results("../../../results/majority-voting-experiment/*.csv")
+    # convert_old_format_results("../../../new_results/q-experiment/*.csv")
+    # convert_old_format_results("../../../new_results/preference-sampling-experiment/*.csv")
+    # convert_old_format_results("../../../new_results/majority-voting-experiment/*.csv")
     convert_old_format_results(
-        "../../../results/directed-undirected-experiment/*.csv")
+        "../../../new_results/directed-undirected-experiment/*.csv")

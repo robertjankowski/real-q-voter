@@ -36,17 +36,17 @@ def plot_by_q(dataset: str, with_weighted_opinion=False, filename=None, pdf=Fals
 
 
 def main():
-    plot_by_q("ba", with_weighted_opinion=True, filename="q-experiment-ba", pdf=True)
+    plot_by_q("ba", with_weighted_opinion=True, filename="q-experiment-ba", pdf=False)
     plot_by_q("soc-fb", with_weighted_opinion=True,
-              filename='q-experiment-soc-fb', pdf=True)
+              filename='q-experiment-soc-fb', pdf=False)
     plot_by_q("routers", with_weighted_opinion=True,
-              filename='q-experiment-routers', pdf=True)
+              filename='q-experiment-routers', pdf=False)
     plot_by_dataset(2, with_weighted_opinion=True,
-                    filename='q-experiment-q=2', pdf=True)
+                    filename='q-experiment-q=2', pdf=False)
     plot_by_dataset(3, with_weighted_opinion=True,
-                    filename='q-experiment-q=3', pdf=True)
+                    filename='q-experiment-q=3', pdf=False)
     plot_by_dataset(4, with_weighted_opinion=True,
-                    filename='q-experiment-q=4', pdf=True)
+                    filename='q-experiment-q=4', pdf=False)
 
 
 if __name__ == '__main__':
