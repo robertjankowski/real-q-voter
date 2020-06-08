@@ -3,8 +3,14 @@ import numpy as np
 import pandas as pd
 import re
 import matplotlib.pyplot as plt
+import matplotlib
 import matplotlib.colors as mcolors
 import random
+
+matplotlib.rc('text', usetex=True)
+matplotlib.rc('font', size=15)
+matplotlib.rc('legend', fontsize=14)
+
 
 def read_metrics(filename: str):
     opinions = []
@@ -29,7 +35,7 @@ def plot_experiment(files, with_weighted_opinion=False, show_q=False, col=None):
         if not with_weighted_opinion and 'weighted_mean_opinion' in opinion_type:
             continue
         result.columns = ['p_range', opinion_type]
-        plot_label = extract_name(f) + ' ' + opinion_type
+        plot_label = extract_name(f) + ' ' + opinion_type.replace('_', ' ')
         plot_label = plot_label.split('/')[-1]
         if show_q:
             plot_label += ' ' + extract_q(f)
@@ -58,7 +64,7 @@ def extract_opinion_type(file: str):
 
 
 def extract_name(file: str):
-    return file.split('\\')[-1].split('-q')[0]
+    return file.split('\\')[-1].split('-q')[0].replace('_', ' ')
 
 
 def fetch_files_from(experiment: str):

@@ -44,9 +44,9 @@ def main():
     # plot_by_dataset(2, with_weighted_opinion=True,
     #                 filename='q-experiment-q=2', pdf=True)
     # plot_by_dataset(3, with_weighted_opinion=True,
-    #                 filename='q-experiment-q=3', pdf=True)
+    #                 filename='q-experiment-q=3_poster', pdf=True)
     plot_by_dataset(4, with_weighted_opinion=True,
-                    filename='q-experiment-q=4', pdf=True)
+                    filename='q-experiment-q=4_poster', pdf=True)
 
 
 if __name__ == '__main__':

@@ -22,7 +22,7 @@ def plot_by_dataset(q: int, with_weighted_opinion=False, filename=None, pdf=Fals
 
 def plot_by_q(dataset: str, with_weighted_opinion=False, filename=None, pdf=False):
     files = filter_files_by(fetch_files_from(
-        "directed-undirected-experiment"), dataset)
+        "directed-undirected-experiment"), dataset) 
     plot_experiment(files, with_weighted_opinion, show_q=True)
     plt.title(f'directed-undirected-experiment for dataset={dataset}')
     if filename:
@@ -39,7 +39,7 @@ def plot_by_q(dataset: str, with_weighted_opinion=False, filename=None, pdf=Fals
 
 def main():
     plot_by_q("health", with_weighted_opinion=False,
-              filename='directed_undirected_all', pdf=True)
+              filename='directed_undirected_all_poster', pdf=True)
     # plot_by_dataset(2, with_weighted_opinion=True,
     #                 filename='directed_undirected_q=2', pdf=False)
     # plot_by_dataset(3, with_weighted_opinion=True,

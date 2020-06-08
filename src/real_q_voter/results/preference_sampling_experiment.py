@@ -22,9 +22,9 @@ def plot_preference_sampling_experiment(with_weighted_opinion=False, q=None, fil
 
 
 def main():
-    plot_preference_sampling_experiment(q=2, filename='preference_sampling_q_2', pdf=False)
+    # plot_preference_sampling_experiment(q=2, filename='preference_sampling_q_2', pdf=False)
     # plot_preference_sampling_experiment(q=3, filename='preference_sampling_q_3', pdf=False)
-    # plot_preference_sampling_experiment(q=4, filename='preference_sampling_q_4', pdf=True)
+    plot_preference_sampling_experiment(q=4, filename='preference_sampling_q_4_poster', pdf=True)
 
 if __name__ == '__main__':
     main()
