@@ -58,11 +58,13 @@ def main():
     #     '../../../results/directed-undirected-appendix/moreno_preference_sampling=True_is_random=False_I=10_directed=False_q=4_N=25390.csv',
     #     filename='moreno_preference_sampling_appendix_start_ones',
     #     pdf=True)
+
+    # TODO: Wait on Spell: preference sampling = False, is random = True, I = 5
     plot_results(
         '../../../results/appendix-experiment/moreno_is_random=True_I=10_directed=False_q=4_N=25390.csv',
-        '../../../results/appendix-experiment/moreno_preference_sampling=True_is_random=True_I=10_directed=False_q=4_N=25390.csv',
-        filename='moreno_preference_sampling_appendix_start_random',
-        pdf=True
+        '../../../results/appendix-experiment/moreno_preference_sampling=True_is_random=True_I=15_directed=False_q=4_N=25390.csv',
+#        filename='moreno_preference_sampling_appendix_start_random',
+#        pdf=True
     )
 
 
