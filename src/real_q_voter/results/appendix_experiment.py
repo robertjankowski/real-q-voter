@@ -34,6 +34,7 @@ def plot_results(pathA, pathB, title=None, filename=None, pdf=False):
 
     plt.ylabel(r'$m(p)$')
     plt.xlabel(r'$p$')
+    plt.ylim([-0.5, 0.5])
     plt.grid(alpha=0.3)
     plt.legend()
     if title:
@@ -52,11 +53,17 @@ def plot_results(pathA, pathB, title=None, filename=None, pdf=False):
 
 
 def main():
+    # plot_results(
+    #     '../../../results/directed-undirected-appendix/moreno_is_random=False_I=10_directed=False_q=4_N=25390.csv',
+    #     '../../../results/directed-undirected-appendix/moreno_preference_sampling=True_is_random=False_I=10_directed=False_q=4_N=25390.csv',
+    #     filename='moreno_preference_sampling_appendix_start_ones',
+    #     pdf=True)
     plot_results(
-        '../../../results/directed-undirected-appendix/moreno_is_random=False_I=10_directed=False_q=4_N=25390.csv',
-        '../../../results/directed-undirected-appendix/moreno_preference_sampling=True_is_random=False_I=10_directed=False_q=4_N=25390.csv',
-        filename='moreno_preference_sampling_appendix_start_ones',
-        pdf=True)
+        '../../../results/appendix-experiment/moreno_is_random=True_I=10_directed=False_q=4_N=25390.csv',
+        '../../../results/appendix-experiment/moreno_preference_sampling=True_is_random=True_I=10_directed=False_q=4_N=25390.csv',
+        filename='moreno_preference_sampling_appendix_start_random',
+        pdf=True
+    )
 
 
 if __name__ == '__main__':
