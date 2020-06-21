@@ -8,7 +8,7 @@ matplotlib.rc('font', size=15)
 matplotlib.rc('legend', fontsize=14)
 
 
-def plot_results(pathA, pathB, title=None, filename=None, pdf=False):
+def plot_results(pathA, pathB, title=None, filename=None, pdf=False, scale_y=False):
     dataA = pd.read_csv(pathA)
     dataB = pd.read_csv(pathB)
 
@@ -34,7 +34,8 @@ def plot_results(pathA, pathB, title=None, filename=None, pdf=False):
 
     plt.ylabel(r'$m(p)$')
     plt.xlabel(r'$p$')
-    plt.ylim([-0.5, 0.5])
+    if scale_y:
+        plt.ylim([-0.2, 0.2])
     plt.grid(alpha=0.3)
     plt.legend()
     if title:
@@ -54,18 +55,18 @@ def plot_results(pathA, pathB, title=None, filename=None, pdf=False):
 
 def main():
     # plot_results(
-    #     '../../../results/directed-undirected-appendix/moreno_is_random=False_I=10_directed=False_q=4_N=25390.csv',
-    #     '../../../results/directed-undirected-appendix/moreno_preference_sampling=True_is_random=False_I=10_directed=False_q=4_N=25390.csv',
-    #     filename='moreno_preference_sampling_appendix_start_ones',
-    #     pdf=True)
-
-    # TODO: Wait on Spell: preference sampling = False, is random = True, I = 5
-    plot_results(
-        '../../../results/appendix-experiment/moreno_is_random=True_I=10_directed=False_q=4_N=25390.csv',
-        '../../../results/appendix-experiment/moreno_preference_sampling=True_is_random=True_I=15_directed=False_q=4_N=25390.csv',
-#        filename='moreno_preference_sampling_appendix_start_random',
-#        pdf=True
-    )
+    #      '../../../results/appendix-experiment/moreno_preference_sampling=False_is_random=False_I=15_directed=False_q=4_N=25390.csv',
+    #      '../../../results/appendix-experiment/moreno_preference_sampling=True_is_random=False_I=15_directed=False_q=4_N=25390.csv',
+    #      filename='moreno_preference_sampling_appendix_start_ones_I=15',
+    #      pdf=True
+    # )
+   plot_results(
+       '../../../results/appendix-experiment/moreno_preference_sampling=False_is_random=True_I=15_directed=False_q=4_N=25390.csv',
+       '../../../results/appendix-experiment/moreno_preference_sampling=True_is_random=True_I=15_directed=False_q=4_N=25390.csv',
+       filename='moreno_preference_sampling_appendix_start_random_I=15',
+       scale_y=True,
+       pdf=True
+   )
 
 
 if __name__ == '__main__':
