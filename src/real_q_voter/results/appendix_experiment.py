@@ -19,12 +19,14 @@ def plot_results(pathA, pathB, title=None, filename=None, pdf=False, scale_y=Fal
     statsB = dataB.apply(lambda x: (np.mean(x), np.std(x)))
     mean_opinionB, std_opinionB = list(zip(*statsB.values))
 
+    plt.plot(p_range, mean_opinionA, color='blue', alpha=0.3)
     plt.errorbar(p_range,
                  mean_opinionA,
                  yerr=std_opinionA,
                  fmt='o',
                  color='blue',
                  label='without preference sampling')
+    plt.plot(p_range, mean_opinionB, color='red', alpha=0.3)
     plt.errorbar(p_range,
                  mean_opinionB,
                  yerr=std_opinionB,
@@ -54,19 +56,19 @@ def plot_results(pathA, pathB, title=None, filename=None, pdf=False, scale_y=Fal
 
 
 def main():
+    plot_results(
+        '../../../results/appendix-experiment/moreno_preference_sampling=False_is_random=False_I=15_directed=False_q=4_N=25390.csv',
+        '../../../results/appendix-experiment/moreno_preference_sampling=True_is_random=False_I=15_directed=False_q=4_N=25390.csv',
+        filename='moreno_preference_sampling_appendix_start_ones_I=15_with_lines',
+        pdf=True
+    )
     # plot_results(
-    #      '../../../results/appendix-experiment/moreno_preference_sampling=False_is_random=False_I=15_directed=False_q=4_N=25390.csv',
-    #      '../../../results/appendix-experiment/moreno_preference_sampling=True_is_random=False_I=15_directed=False_q=4_N=25390.csv',
-    #      filename='moreno_preference_sampling_appendix_start_ones_I=15',
-    #      pdf=True
+    #     '../../../results/appendix-experiment/moreno_preference_sampling=False_is_random=True_I=15_directed=False_q=4_N=25390.csv',
+    #     '../../../results/appendix-experiment/moreno_preference_sampling=True_is_random=True_I=15_directed=False_q=4_N=25390.csv',
+    #     filename='moreno_preference_sampling_appendix_start_random_I=15_with_lines',
+    #     scale_y=True,
+    #     pdf=True
     # )
-   plot_results(
-       '../../../results/appendix-experiment/moreno_preference_sampling=False_is_random=True_I=15_directed=False_q=4_N=25390.csv',
-       '../../../results/appendix-experiment/moreno_preference_sampling=True_is_random=True_I=15_directed=False_q=4_N=25390.csv',
-       filename='moreno_preference_sampling_appendix_start_random_I=15',
-       scale_y=True,
-       pdf=True
-   )
 
 
 if __name__ == '__main__':
